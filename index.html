@@ -56,8 +56,9 @@
             display: none;
         }
         .square{
-            width: 2em;
-            height: 2em;
+            width: 50px;
+            height: 50px;
+            font-size:42px;
         }
     </style>
 </head>
@@ -80,7 +81,7 @@
             <div class="form-group">
                 <input type="number" id="answer" onkeydown="if(event.key === 'Enter') checkAnswer()">
             </div>
-            <div id="result"></div>
+            <div id="result"></div><br><br>
                     <button onclick="inputNumber(1)" class="square">1</button>
                     <button onclick="inputNumber(2)" class="square">2</button>
                     <button onclick="inputNumber(3)" class="square">3</button>
@@ -90,7 +91,7 @@
                     <button onclick="inputNumber(7)" class="square">7</button>
                     <button onclick="inputNumber(8)" class="square">8</button>
                     <button onclick="inputNumber(9)" class="square">9</button>
-                    <button onclick="inputNumber(0)" class="square">0</button><br>
+                    <button onclick="inputNumber(0)" class="square">0</button><br><br>
                     <button onclick="deleteLastCharacter()">けす</button>
                     <button onclick="checkAnswer()">けってい</button>
             <button id="back" onclick="goBack()" onkeydown="if(event.key === 'Enter') goBack()">おわる</button>
