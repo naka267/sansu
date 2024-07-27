@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s;
+            font-size: 1em; /* フォントサイズを増やす */
+        }
+        .container {
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2em; /* ギャップを増やす */
+            margin-bottom: 2em; /* マージンを増やす */
+        }
+        label {
+            display: block;
+            margin-bottom: 1em; /* マージンを増やす */
+            font-size: 1.5em; /* フォントサイズを増やす */
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 1em; /* パディングを増やす */
+            font-size: 1.5em; /* フォントサイズを増やす */
+        }
+        button {
+            font-size: 2.5em; 
+        }
+        span {
+            font-size: 2.5em; /* "~"と"+"のフォントサイズを増やす */
+        }
+        #result {
+            margin-top: 2em; /* マージンを増やす */
+            font-size: 1.5em; /* フォントサイズを増やす */
+            font-weight: bold;
+        }
+        #back {
+            position: fixed;
+            right: 40px; /* 右側の位置を増やす */
+            bottom: 40px; /* 下側の位置を増やす */
+            font-size: 1.5em; /* フォントサイズを増やす */
+        }
+        /* 追加: 初期状態では問題と解答エリアを非表示にする */
+        #problem-area {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="settings-area">
+            <div class="form-group">
+                <input type="number" id="minOperand" min="1" max="100" value="1" onkeydown="if(event.key === 'Enter') startProblems()">
+                <span>~</span>
+                <input type="number" id="maxOperand" min="1" max="100" value="10" onkeydown="if(event.key === 'Enter') startProblems()">
+                <span>+</span>
+                <input type="number" id="minOperand2" min="1" max="100" value="1" onkeydown="if(event.key === 'Enter') startProblems()">
+                <span>~</span>
+                <input type="number" id="maxOperand2" min="1" max="100" value="10" onkeydown="if(event.key === 'Enter') startProblems()">
+            </div>
+            <button onclick="startProblems()" onkeydown="if(event.key === 'Enter') startProblems()">はじめる</button>
+        </div>
+        <div id="problem-area">
+            <div id="problem" style="margin-top: 1em; font-size: 9em;weight:bold;"></div>
+            <div class="form-group">
+                <input type="number" id="answer" onkeydown="if(event.key === 'Enter') checkAnswer()">
+            </div>
+            <div id="result"></div>
+            <button id="back" onclick="goBack()" onkeydown="if(event.key === 'Enter') goBack()">おわる</button>
+        </div>
+    </div>
+    <audio id="correct-sound" src="https://naka267.github.io/sansu/correct.mp3"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        let problem;
+        let currentProblem = 0;
+        let correctAnswers = 0; 
+        let incorrectAnswers = 0;
+        Math.seedrandom('Mersenne Twister'); 
+        function startProblems() {
+            document.getElementById('settings-area').style.display = 'none';
+            document.getElementById('problem-area').style.display = 'block';
+            generateProblem();
+        }
+        function generateProblem() {
+            const minOperand = document.getElementById('minOperand').value;
+            const maxOperand = document.getElementById('maxOperand').value;
+            const minOperand2 = document.getElementById('minOperand2').value;
+            const maxOperand2 = document.getElementById('maxOperand2').value;
+            const operand1 = Math.floor(Math.random() * (maxOperand - minOperand + 1)) + parseInt(minOperand);
+            const operand2 = Math.floor(Math.random() * (maxOperand2 - minOperand2 + 1)) + parseInt(minOperand2);
+            problem = { operand1, operator: '+', operand2 }; // 足し算のみに限定
+            document.getElementById('problem').innerText = `${operand1} + ${operand2} = ?`;
+        }
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value;
+            let correctAnswer = problem.operand1 + problem.operand2; 
+            if (correctAnswer === parseInt(userAnswer)) {
+                document.getElementById('result').innerText = 'せいかい';
+                document.getElementById('answer').value = ''; 
+                correctAnswers++;
+                currentProblem++;
+                document.getElementById('correct-sound').play(); 
+                generateProblem();
+            } else {
+                document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
+                incorrectAnswers++;
+                currentProblem++;
+            }
+        }
+        function goBack() {
+            let score = calculateScore(correctAnswers, incorrectAnswers);
+            alert(`もんだいのかず: ${currentProblem}\nせいかいのかず: ${correctAnswers}\nスコア: ${score}`);
+            document.getElementById('settings-area').style.display = 'block';
+            document.getElementById('problem-area').style.display = 'none';
+        }
+        function calculateScore(correct, incorrect) {
+            return correct * 100 - incorrect * 200;
+        }
+    </script>
+</body>
+</html>
