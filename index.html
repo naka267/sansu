@@ -137,9 +137,9 @@
             generateProblem();
         } else {
             let correctSound = document.getElementById('correct-sound');
-            correctSound.pause(); 
-            correctSound.currentTime = 0; 
-            correctSound.play(); 
+            incorrectSound.pause(); 
+            incorrectSound.currentTime = 0; 
+            incorrectSound.play(); 
 　　　　　　　document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
             incorrectAnswers++;
             currentProblem++;
