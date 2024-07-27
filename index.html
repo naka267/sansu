@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>さんすうのもんだい</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,7 +108,8 @@
         const userAnswer = document.getElementById('answer').value;
         let correctAnswer = problem.operand1 + problem.operand2; 
         if (correctAnswer === parseInt(userAnswer)) {
-            document.getElementById('answer').value = ''; 
+            document.getElementById('answer').value = '';
+            document.getElementById('result').innerText = '　　';　
             correctAnswers++;
             currentProblem++;
             let correctSound = document.getElementById('correct-sound');
@@ -116,7 +118,7 @@
             correctSound.play(); 
             generateProblem();
         } else {
-            document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
+　　　　　　　document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
             incorrectAnswers++;
             currentProblem++;
         }
