@@ -107,7 +107,6 @@
         const userAnswer = document.getElementById('answer').value;
         let correctAnswer = problem.operand1 + problem.operand2; 
         if (correctAnswer === parseInt(userAnswer)) {
-            document.getElementById('result').innerText = 'せいかい';
             document.getElementById('answer').value = ''; 
             correctAnswers++;
             currentProblem++;
