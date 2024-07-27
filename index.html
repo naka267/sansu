@@ -98,6 +98,7 @@
         </div>
     </div>
     <audio id="correct-sound" src="https://naka267.github.io/sansu/correct.mp3"></audio>
+    <audio id="incorrect-sound" src="https://naka267.github.io/sansu/incorrect.mp3"></audio>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script>
@@ -125,16 +126,20 @@
         const userAnswer = document.getElementById('answer').value;
         let correctAnswer = problem.operand1 + problem.operand2; 
         if (correctAnswer === parseInt(userAnswer)) {
+            let incorrectSound = document.getElementById('incorrect-sound');
+            correctSound.pause(); 
+            correctSound.currentTime = 0; 
+            correctSound.play(); 
             document.getElementById('answer').value = '';
             document.getElementById('result').innerText = '　　';　
             correctAnswers++;
             currentProblem++;
+            generateProblem();
+        } else {
             let correctSound = document.getElementById('correct-sound');
             correctSound.pause(); 
             correctSound.currentTime = 0; 
             correctSound.play(); 
-            generateProblem();
-        } else {
 　　　　　　　document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
             incorrectAnswers++;
             currentProblem++;
