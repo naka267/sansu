@@ -11,7 +11,7 @@
             margin: 0;
             background-color: #f0f0f0;
             transition: background-color 0.5s;
-            font-size: 1em; /* フォントサイズを増やす */
+            font-size: 1em; 
         }
         .container {
             text-align: center;
@@ -20,38 +20,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2em; /* ギャップを増やす */
-            margin-bottom: 2em; /* マージンを増やす */
+            gap: 2em; 
+            margin-bottom: 2em; 
         }
         label {
             display: block;
-            margin-bottom: 1em; /* マージンを増やす */
-            font-size: 1.5em; /* フォントサイズを増やす */
+            margin-bottom: 1em;
+            font-size: 1.5em;
         }
         input[type="number"],
         select {
             width: 100%;
-            padding: 1em; /* パディングを増やす */
-            font-size: 1.5em; /* フォントサイズを増やす */
+            padding: 1em;
+            font-size: 1.5em;
         }
         button {
             font-size: 2.5em; 
         }
         span {
-            font-size: 2.5em; /* "~"と"+"のフォントサイズを増やす */
+            font-size: 2.5em;
         }
         #result {
-            margin-top: 2em; /* マージンを増やす */
-            font-size: 1.5em; /* フォントサイズを増やす */
+            margin-top: 2em;
+            font-size: 1.5em;
             font-weight: bold;
         }
         #back {
             position: fixed;
-            right: 40px; /* 右側の位置を増やす */
-            bottom: 40px; /* 下側の位置を増やす */
-            font-size: 1.5em; /* フォントサイズを増やす */
+            right: 40px;
+            bottom: 40px;
+            font-size: 1.5em;
         }
-        /* 追加: 初期状態では問題と解答エリアを非表示にする */
         #problem-area {
             display: none;
         }
@@ -101,7 +100,7 @@
             const maxOperand2 = document.getElementById('maxOperand2').value;
             const operand1 = Math.floor(Math.random() * (maxOperand - minOperand + 1)) + parseInt(minOperand);
             const operand2 = Math.floor(Math.random() * (maxOperand2 - minOperand2 + 1)) + parseInt(minOperand2);
-            problem = { operand1, operator: '+', operand2 }; // 足し算のみに限定
+            problem = { operand1, operator: '+', operand2 }; 
             document.getElementById('problem').innerText = `${operand1} + ${operand2} = ?`;
         }
         function checkAnswer() {
