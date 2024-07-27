@@ -77,6 +77,18 @@
                 <input type="number" id="answer" onkeydown="if(event.key === 'Enter') checkAnswer()">
             </div>
             <div id="result"></div>
+                    <button onclick="inputNumber(1)">1</button>
+                    <button onclick="inputNumber(2)">2</button>
+                    <button onclick="inputNumber(3)">3</button>
+                    <button onclick="inputNumber(4)">4</button>
+                    <button onclick="inputNumber(5)">5</button>
+                    <button onclick="inputNumber(6)">6</button>
+                    <button onclick="inputNumber(7)">7</button>
+                    <button onclick="inputNumber(8)">8</button>
+                    <button onclick="inputNumber(9)">9</button>
+                    <button onclick="inputNumber(0)">0</button><br>
+                    <button onclick="deleteLastCharacter()">けす</button>
+                    <button onclick="checkAnswer()">けってい</button>
             <button id="back" onclick="goBack()" onkeydown="if(event.key === 'Enter') goBack()">おわる</button>
         </div>
     </div>
@@ -131,6 +143,16 @@
         }
         function calculateScore(correct, incorrect) {
             return correct * 100 - incorrect * 200;
+        }
+        function inputNumber(num) {
+            let currentVal = document.getElementById('answer').value;
+            document.getElementById('answer').value = currentVal ? currentVal + num.toString() : num.toString();
+        }
+        function deleteLastCharacter() {
+            let currentVal = document.getElementById('answer').value;
+            if (currentVal) {
+                document.getElementById('answer').value = currentVal.slice(0, -1);
+            }
         }
     </script>
 </body>
