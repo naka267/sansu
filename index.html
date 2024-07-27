@@ -55,6 +55,10 @@
         #problem-area {
             display: none;
         }
+        .square{
+            width: 2em;
+            height: 2em;
+        }
     </style>
 </head>
 <body>
@@ -77,16 +81,16 @@
                 <input type="number" id="answer" onkeydown="if(event.key === 'Enter') checkAnswer()">
             </div>
             <div id="result"></div>
-                    <button onclick="inputNumber(1)">1</button>
-                    <button onclick="inputNumber(2)">2</button>
-                    <button onclick="inputNumber(3)">3</button>
-                    <button onclick="inputNumber(4)">4</button>
-                    <button onclick="inputNumber(5)">5</button>
-                    <button onclick="inputNumber(6)">6</button>
-                    <button onclick="inputNumber(7)">7</button>
-                    <button onclick="inputNumber(8)">8</button>
-                    <button onclick="inputNumber(9)">9</button>
-                    <button onclick="inputNumber(0)">0</button><br>
+                    <button onclick="inputNumber(1)" class="square">1</button>
+                    <button onclick="inputNumber(2)" class="square">2</button>
+                    <button onclick="inputNumber(3)" class="square">3</button>
+                    <button onclick="inputNumber(4)" class="square">4</button>
+                    <button onclick="inputNumber(5)" class="square">5</button>
+                    <button onclick="inputNumber(6)" class="square">6</button>
+                    <button onclick="inputNumber(7)" class="square">7</button>
+                    <button onclick="inputNumber(8)" class="square">8</button>
+                    <button onclick="inputNumber(9)" class="square">9</button>
+                    <button onclick="inputNumber(0)" class="square">0</button><br>
                     <button onclick="deleteLastCharacter()">けす</button>
                     <button onclick="checkAnswer()">けってい</button>
             <button id="back" onclick="goBack()" onkeydown="if(event.key === 'Enter') goBack()">おわる</button>
