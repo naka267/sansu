@@ -103,22 +103,25 @@
             problem = { operand1, operator: '+', operand2 }; 
             document.getElementById('problem').innerText = `${operand1} + ${operand2} = ?`;
         }
-        function checkAnswer() {
-            const userAnswer = document.getElementById('answer').value;
-            let correctAnswer = problem.operand1 + problem.operand2; 
-            if (correctAnswer === parseInt(userAnswer)) {
-                document.getElementById('result').innerText = 'せいかい';
-                document.getElementById('answer').value = ''; 
-                correctAnswers++;
-                currentProblem++;
-                document.getElementById('correct-sound').play(); 
-                generateProblem();
-            } else {
-                document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
-                incorrectAnswers++;
-                currentProblem++;
-            }
+    function checkAnswer() {
+        const userAnswer = document.getElementById('answer').value;
+        let correctAnswer = problem.operand1 + problem.operand2; 
+        if (correctAnswer === parseInt(userAnswer)) {
+            document.getElementById('result').innerText = 'せいかい';
+            document.getElementById('answer').value = ''; 
+            correctAnswers++;
+            currentProblem++;
+            let correctSound = document.getElementById('correct-sound');
+            correctSound.pause(); 
+            correctSound.currentTime = 0; 
+            correctSound.play(); 
+            generateProblem();
+        } else {
+            document.getElementById('result').innerText = 'ふせいかい せいかいは'+correctAnswer;
+            incorrectAnswers++;
+            currentProblem++;
         }
+    }
         function goBack() {
             let score = calculateScore(correctAnswers, incorrectAnswers);
             alert(`もんだいのかず: ${currentProblem}\nせいかいのかず: ${correctAnswers}\nスコア: ${score}`);
